@@ -22,6 +22,10 @@ namespace GeneticLogi_Backend.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .Property(u => u.Password)
+                .HasMaxLength(128);
+
             modelBuilder.Entity<RouteDelivery>()
                 .HasKey(rd => new { rd.RouteId, rd.DeliveryId }); // Define composite primary key
 

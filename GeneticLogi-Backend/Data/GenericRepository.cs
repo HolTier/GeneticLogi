@@ -19,7 +19,7 @@ namespace GeneticLogi_Backend.Data
             await _context.SaveChangesAsync();
         }
 
-        public void Delete(T entity)
+        public void Remove(T entity)
         {
             _dbSet.Remove(entity);
             _context.SaveChanges();
@@ -30,15 +30,30 @@ namespace GeneticLogi_Backend.Data
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
+
+        public async Task SaveChangesAsync()
+        {
+             await _context.SaveChangesAsync();
         }
 
         public void Update(T entity)
         {
             _dbSet.Update(entity);
             _context.SaveChanges();
+        }
+
+        public Task<T?> GetByNameAsync(string name)
+        {
+            return _dbSet.FirstOrDefaultAsync(e => e.GetType().GetProperty("Name").GetValue(e).ToString() == name);
         }
     }
 }
