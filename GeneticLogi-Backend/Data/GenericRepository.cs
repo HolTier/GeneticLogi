@@ -4,7 +4,7 @@ namespace GeneticLogi_Backend.Data
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly GeneticLogiDbContext _context;
+        protected readonly GeneticLogiDbContext _context;
         private readonly DbSet<T> _dbSet;
 
         public GenericRepository(GeneticLogiDbContext context)
