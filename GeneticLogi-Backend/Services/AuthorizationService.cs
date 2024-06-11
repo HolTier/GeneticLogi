@@ -13,31 +13,29 @@ namespace GeneticLogi_Backend.Services
             _userRepository = userRepository;
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync()
-        {
-            return await _userRepository.GetAllAsync();
-        }
-
-        public Task<User?> GetUserByIdAsync(int id)
-        {
-            return _userRepository.GetByIdAsync(id);
-        }
-
-        public async Task<bool> LoginUserAsync(LoginDto login)
+        public async Task<User?> LoginUserAsync(LoginDto login)
         {
             if (string.IsNullOrEmpty(login.Login) || string.IsNullOrEmpty(login.Password))
             {
-                return await Task.FromResult(false);
+                return null;
             }
 
             var user = await _userRepository.GetUserByLoginAndPasswordAsync(login.Login, login.Password);
+
             if (user == null)
             {
-                return await Task.FromResult(false);
+                return null;
             }
 
             // Verify password plain text with hashed password
-            return BCrypt.Net.BCrypt.Verify(login.Password, user.Password);
+            bool isVerified = BCrypt.Net.BCrypt.Verify(login.Password, user.Password);
+
+            if (isVerified)
+            {
+                return user;
+            }
+
+            return null;
         }
 
         public async Task<bool> RegisterUserAsync(RegistrationDto registration)

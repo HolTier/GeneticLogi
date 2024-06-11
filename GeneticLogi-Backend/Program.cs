@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using GeneticLogi_Backend.Data;
 using GeneticLogi_Backend.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace GeneticLogi_Backend
 {
@@ -19,6 +20,7 @@ namespace GeneticLogi_Backend
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             // Controllers
             builder.Services.AddControllers();
@@ -28,7 +30,19 @@ namespace GeneticLogi_Backend
                 c.SwaggerDoc("v1", new() { Title = "GeneticLogi_Backend", Version = "v1" });
             });
 
+            // Authentication
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/api/Auth/Login";
+                    options.ExpireTimeSpan = TimeSpan.FromDays(1);
+                    options.SlidingExpiration = true;
+                });
+
             var app = builder.Build();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.MapGet("/", () => "Hello World!");
 

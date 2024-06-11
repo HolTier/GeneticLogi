@@ -1,18 +1,16 @@
-version: '3.9'
+version: '3.4'
 
 services:
-  webapi:
-    image: geneticlogibackend
+  geneticlogi-backend:
+    image: ${DOCKER_REGISTRY-}geneticlogibackend
     build:
-      context: .
+      context: GeneticLogi-Backend
       dockerfile: Dockerfile
     ports:
       - "5000:8080"
-    depends_on:
-      - db
     networks:
       - app-network
-
+  
   db:
     image: postgres
     environment:
