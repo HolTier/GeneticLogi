@@ -37,5 +37,12 @@ namespace GeneticLogi_Backend.Controllers
 
             return Ok(user);
         }
+
+        [HttpGet("AuthorizationTest")]
+        [Authorize]
+        public IActionResult AuthorizationTest()
+        {
+            return Ok("Authorized");
+        }
     }
 }

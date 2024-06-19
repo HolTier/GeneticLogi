@@ -7,5 +7,6 @@ namespace GeneticLogi_Backend.Services
     {
         public Task<User?> LoginUserAsync(LoginDto login);
         public Task<bool> RegisterUserAsync(RegistrationDto registration);
+        public Task<bool> LogoutUserAsync();
     }
 }

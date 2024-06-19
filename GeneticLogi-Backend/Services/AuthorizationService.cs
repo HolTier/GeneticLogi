@@ -20,7 +20,7 @@ namespace GeneticLogi_Backend.Services
                 return null;
             }
 
-            var user = await _userRepository.GetUserByLoginAndPasswordAsync(login.Login, login.Password);
+            var user = await _userRepository.GetUserByLoginAsync(login.Login);
 
             if (user == null)
             {
@@ -68,6 +68,12 @@ namespace GeneticLogi_Backend.Services
             await _userRepository.AddAsync(newUser);
 
             return await Task.FromResult(true);
+        }
+
+        public async Task<bool> LogoutUserAsync()
+        {
+            await Task.CompletedTask;
+            return true;
         }
     }
 }

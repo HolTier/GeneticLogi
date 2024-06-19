@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using GeneticLogi_Backend.Data;
 using GeneticLogi_Backend.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.OpenApi.Models;
 
 namespace GeneticLogi_Backend
 {
@@ -28,6 +29,32 @@ namespace GeneticLogi_Backend
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new() { Title = "GeneticLogi_Backend", Version = "v1" });
+
+                // Add cookie authentication
+                c.AddSecurityDefinition("cookieAuth", new OpenApiSecurityScheme
+                {
+                    Name = "Cookie",
+                    Type = SecuritySchemeType.ApiKey,
+                    In = ParameterLocation.Cookie,
+                    Scheme = CookieAuthenticationDefaults.AuthenticationScheme,
+                    Description = "Cookie based authentication"
+                });
+
+                // Add security requirement
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "cookieAuth"
+                            }
+                        },
+                        new string[] { }
+                    }
+                });
             });
 
             // Authentication
@@ -39,12 +66,15 @@ namespace GeneticLogi_Backend
                     options.SlidingExpiration = true;
                 });
 
+            builder.Services.AddAuthorization();
+
             var app = builder.Build();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapGet("/", () => "Hello World!");
+            // Open swagger
+            app.MapGet("/swagger", () => Results.Redirect("/swagger/index.html"));
 
             app.UseSwagger();
 

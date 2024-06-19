@@ -3,6 +3,7 @@ using GeneticLogi_Backend.Models;
 using GeneticLogi_Backend.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -13,9 +14,9 @@ namespace GeneticLogi_Backend.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthorizationService _authorizationService;
+        private readonly Services.IAuthorizationService _authorizationService;
 
-        public AuthController(IAuthorizationService authorizationService)
+        public AuthController(Services.IAuthorizationService authorizationService)
         {
             _authorizationService = authorizationService;
         }
@@ -33,7 +34,7 @@ namespace GeneticLogi_Backend.Controllers
 
             if (user == null)
             {
-                return Unauthorized(user);
+                return Unauthorized("User with this login and password not found");
             }
 
             // Create claims
@@ -68,6 +69,15 @@ namespace GeneticLogi_Backend.Controllers
             }
 
             return Ok("User registered");
+        }
+
+        [HttpPost("Logout")]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return Ok("User logged out");
         }
     }
 }
