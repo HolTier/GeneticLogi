@@ -1,13 +1,23 @@
 version: '3.4'
 
 services:
-  geneticlogi-backend:
-    image: ${DOCKER_REGISTRY-}geneticlogibackend
+  geneticlogi-api:
+    image: ${DOCKER_REGISTRY-}geneticlogiapi
     build:
-      context: GeneticLogi-Backend
+      context: GeneticLogi-API
       dockerfile: Dockerfile
     ports:
       - "5000:8080"
+    networks:
+      - app-network
+
+  geneticlogi-costservice:
+    image: ${DOCKER_REGISTRY-}geneticlogicostservice
+    build:
+      context: GeneticLogi-CostService
+      dockerfile: Dockerfile
+    ports:
+      - "5001:8080"
     networks:
       - app-network
   

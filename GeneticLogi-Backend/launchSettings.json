@@ -4,7 +4,7 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "geneticlogi-backend": "StartDebugging",
+        "geneticlogi-api": "StartDebugging",
         "db": "StartWithoutDebugging"
       }
     }

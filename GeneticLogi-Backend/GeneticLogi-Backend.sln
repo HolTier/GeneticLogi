@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneticLogi-API", "GeneticL
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DCF6962D-79F7-41F5-B0DE-4EF65601693F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticLogi-CostService", "..\GeneticLogi-CostService\GeneticLogi-CostService.csproj", "{A1BA0798-9D7C-46DE-9587-E0F9E4C414CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticLogi-CostService", "GeneticLogi-CostService\GeneticLogi-CostService.csproj", "{ED9B1AA8-CA2F-4000-A40E-51B4B13B3B5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{DCF6962D-79F7-41F5-B0DE-4EF65601693F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCF6962D-79F7-41F5-B0DE-4EF65601693F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCF6962D-79F7-41F5-B0DE-4EF65601693F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1BA0798-9D7C-46DE-9587-E0F9E4C414CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1BA0798-9D7C-46DE-9587-E0F9E4C414CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1BA0798-9D7C-46DE-9587-E0F9E4C414CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1BA0798-9D7C-46DE-9587-E0F9E4C414CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED9B1AA8-CA2F-4000-A40E-51B4B13B3B5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9B1AA8-CA2F-4000-A40E-51B4B13B3B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9B1AA8-CA2F-4000-A40E-51B4B13B3B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9B1AA8-CA2F-4000-A40E-51B4B13B3B5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>GeneticLogi_Backend</RootNamespace>
+    <RootNamespace>GeneticLogi_API</RootNamespace>
     <UserSecretsId>ec67f32b-323c-4ec9-9103-d3698d48f425</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
