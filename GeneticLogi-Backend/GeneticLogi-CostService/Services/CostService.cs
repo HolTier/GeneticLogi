@@ -1,6 +1,12 @@
-﻿namespace GeneticLogi_CostService.Services
+﻿using GeneticLogi_CostService.Services.GeneticAlgorithm;
+
+namespace GeneticLogi_CostService.Services
 {
-    public class CostService
+    public class CostService : ICostService
     {
+        public Task<double> RunAlgorithmAsync(int maxIterations)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -17,4 +17,8 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GeneticLogi-API\GeneticLogi-API.csproj" />
+  </ItemGroup>
+
 </Project>

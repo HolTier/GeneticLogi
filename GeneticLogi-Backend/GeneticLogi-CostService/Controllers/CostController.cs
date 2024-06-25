@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GeneticLogi_CostService.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GeneticLogi_CostService.Controllers
 {
@@ -6,9 +7,18 @@ namespace GeneticLogi_CostService.Controllers
     [ApiController]
     public class CostController : Controller
     {
-        public IActionResult Index()
+        private readonly ICostService _costService;
+
+        public CostController(ICostService costService)
         {
-            return View();
+            _costService = costService;
+        }
+
+        [HttpPost("CalculateCost")]
+        public async Task<IActionResult> CalculateCost([FromBody] int maxIterations = 1000)
+        {
+            var cost = await _costService.RunAlgorithmAsync(maxIterations);
+            return Ok(cost);
         }
     }
 }

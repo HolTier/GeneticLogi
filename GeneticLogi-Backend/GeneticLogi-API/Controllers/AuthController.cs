@@ -12,7 +12,7 @@ namespace GeneticLogi_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : Controller
     {
         private readonly Services.IAuthorizationService _authorizationService;
 
